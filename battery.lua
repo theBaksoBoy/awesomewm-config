@@ -24,7 +24,8 @@ local function UpdateBatteryInformation()
         if stdout == "" then return end
 
         local index_of_first_comma = string.find(stdout, ",")
-        local index_of_first_colon, index_of_last_colon = string.find(stdout, ":")
+        local index_of_first_colon = string.find(stdout, ":")
+        local index_of_last_colon = stdout:match(".*():")
 
         local index_of_status_start = index_of_first_colon + 2
         local index_of_status_end = index_of_first_comma - 1
@@ -52,7 +53,7 @@ local function UpdateBatteryInformation()
         end
 
         battery_information.time_remaining_hours = tonumber(string.sub(stdout, index_of_last_colon - 5, index_of_last_colon - 4))
-        battery_information.time_remaining_minutes = tonumber(string.sub(stdout, index_of_last_colon - 5, index_of_last_colon - 4))
+        battery_information.time_remaining_minutes = tonumber(string.sub(stdout, index_of_last_colon - 2, index_of_last_colon - 1))
 
         if battery_information.percentage <= 15 then
             battery_information.is_low = true
