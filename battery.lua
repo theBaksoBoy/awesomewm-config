@@ -30,19 +30,19 @@ local function UpdateBatteryInformation()
         local index_of_status_end = index_of_first_comma - 1
 
         local index_of_percentage_start = index_of_first_comma + 2
-        local index_of_percentage_end = string.find(stdout, "%") - 1
+        local index_of_percentage_end = string.find(stdout, "%%") - 1
 
 
         -- only change the variable if it is either charging or discharging.
         -- if it is either Critical or Unknown then it will just keep the value that it had last iteration
-        local status = string.gsub(stdout, index_of_status_start, index_of_status_end)
+        local status = string.sub(stdout, index_of_status_start, index_of_status_end)
         if status == "Charging" then
             battery_information.is_charging = true
         elseif status == "Discharging" then
             battery_information.is_charging = false
         end
 
-        battery_information.percentage = tonumber(string.gsub(stdout, index_of_percentage_start, index_of_percentage_end))
+        battery_information.percentage = tonumber(string.sub(stdout, index_of_percentage_start, index_of_percentage_end))
 
         -- if the time remaining isn't mentioned in the output then just set it to 0 and return
         if string.sub(stdout, -1) == "%" then
@@ -51,8 +51,8 @@ local function UpdateBatteryInformation()
             return
         end
 
-        battery_information.time_remaining_hours = tonumber(string.gsub(stdout, index_of_last_colon - 5, index_of_last_colon - 4))
-        battery_information.time_remaining_minutes = tonumber(string.gsub(stdout, index_of_last_colon - 5, index_of_last_colon - 4))
+        battery_information.time_remaining_hours = tonumber(string.sub(stdout, index_of_last_colon - 5, index_of_last_colon - 4))
+        battery_information.time_remaining_minutes = tonumber(string.sub(stdout, index_of_last_colon - 5, index_of_last_colon - 4))
 
         if battery_information.percentage <= 15 then
             battery_information.is_low = true
