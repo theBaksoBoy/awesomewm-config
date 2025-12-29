@@ -453,8 +453,8 @@ bar_updating_loop_timer = gears.timer({
             end
 
             -- update the bar next in line and then go to the other one
-            bar_updating_functions[bar_updating_index]()
             bar_updating_index = bar_updating_index % #bar_updating_functions + 1
+            bar_updating_functions[bar_updating_index]()
         end
 })
 
