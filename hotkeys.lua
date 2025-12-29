@@ -56,30 +56,30 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({}, "XF86AudioRaiseVolume",
         function ()
-            awful.spawn("wpctl set-volume @DEFAULT_SINK@ 10%+")
+            awful.spawn.with_shell("wpctl set-volume @DEFAULT_SINK@ 10%+")
             naughty.notify({text="volume +10%"})
         end),
 
     awful.key({}, "XF86AudioLowerVolume",
         function ()
-            awful.spawn("wpctl set-volume @DEFAULT_SINK@ 10%-")
+            awful.spawn.with_shell("wpctl set-volume @DEFAULT_SINK@ 10%-")
             naughty.notify({text="volume -10%"})
         end),
 
     awful.key({}, "XF86AudioMute",
         function ()
-            awful.spawn("wpctl set-volume @DEFAULT_SINK@ 0%")
+            awful.spawn.with_shell("wpctl set-volume @DEFAULT_SINK@ 0%")
             naughty.notify({text="volume 0%"})
         end),
 
     awful.key({}, "XF86MonBrightnessDown",
         function ()
-            awful.spawn("brightnessctl set 10%-")
+            awful.spawn.with_shell("brightnessctl set 10%-")
             naughty.notify({text="brightness -10%"})
             -- make sure that brightness doesn't go to 0% because at least on my laptop, the screen goes pitch fucking black
             awful.spawn.easy_async_with_shell("brightnessctl i | awk -F'[()%]' '/Current brightness/ {print $2}'", function(stdout)
                 if tonumber(stdout) < 1 then
-                    awful.spawn("brightnessctl set 1%")
+                    awful.spawn.with_shell("brightnessctl set 1%")
                     naughty.notify({text="brightness limited to a minimum of 1%"})
                 end
             end)
@@ -87,7 +87,7 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({}, "XF86MonBrightnessUp",
         function ()
-            awful.spawn("brightnessctl set +10%")
+            awful.spawn.with_shell("brightnessctl set +10%")
             naughty.notify({text="brightness +10%"})
         end),
 
