@@ -18,6 +18,7 @@
 -- acpi
 -- wpctl (should already be included if you use pipewire)
 -- brightnessctl
+-- xset (in pacman the package is called xorg-xset)
 
 -- hotkeys.lua is for all the different hotkeys in the config
 
@@ -35,7 +36,7 @@ settings.file_browser = "nautilus"
 settings.emacs =  "/usr/bin/emacsclient -c -a 'emacs'" -- if you don't want to use emacs then you can ignore this. All it will do is make the hotkey for launching it not work
 settings.emacs_server = "/usr/bin/emacs --daemon" -- if you don't want to use emacs then you can ignore this. All it will do is make a command ran at startup related to emacs fail
 
-settings.use_battery_indicators = true -- for if the wibar should have a battery widget, and if the battery status should periodically be updated
+settings.use_battery_indicators = false -- for if the wibar should have a battery widget, and if the battery status should periodically be updated
 settings.darken_screens_with_DDC_CI = true -- if the redshift button should be used to toggle between a bright and dark screen using DDC/CI. This is not very necessary on for instance laptops, as you can manually change their brightness way more efficiently
 
 -- commands that will be run when AwesomeWM starts up
