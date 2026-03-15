@@ -67,6 +67,10 @@ local function SetRedshiftMode(button_state)
         if settings.darken_screens_with_DDC_CI then
             -- set brightness of screens
             awful.spawn.with_shell("ddcutil --display 1 setvcp 10 0 && ddcutil --display 2 setvcp 10 0")
+            -- save brightness state to file
+            local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
+            file:write("dark")
+            file:close()
         else
             awful.spawn.with_shell("killall redshift")
         end
@@ -74,6 +78,10 @@ local function SetRedshiftMode(button_state)
         awful.spawn.with_shell("killall redshift")
         -- set brightness of screens
         awful.spawn.with_shell("ddcutil --display 1 setvcp 10 100 && ddcutil --display 2 setvcp 10 100")
+            -- save brightness state to file
+            local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
+            file:write("bright")
+            file:close()
     end
 end
 
