@@ -66,17 +66,17 @@ local function CreateTextClockWidget(widget_on_right_screen)
                 '<span font="Odin Rounded 10">' .. tostring(now.year) .. "</span>\n" ..
                 '<span font="Odin Rounded 13">-' .. tostring(now.month) .. "</span>\n" ..
                 '<span font="Odin Rounded 13">-' .. tostring(now.day) .. "</span>\n\n" ..
-                '<span font="Odin Rounded 18">' .. tostring(now.hour) .. "\n" ..
+                '<span font="Odin Rounded 18">' .. tostring(hour_12_format) .. "\n" ..
                 tostring(now.min) .. "</span>\n" ..
-                '<span font="Odin Rounded 13">(</span><span font="Odin Rounded 7"> </span>' .. '<span font="Odin Rounded 13">' .. tostring(hour_12_format) .. "</span>" .. '<span font="Odin Rounded 7"> </span><span font="Odin Rounded 13">)</span>'
+                '<span font="Odin Rounded 13">(</span><span font="Odin Rounded 7"> </span>' .. '<span font="Odin Rounded 13">' .. tostring(now.hour) .. "</span>" .. '<span font="Odin Rounded 7"> </span><span font="Odin Rounded 13">)</span>'
         else
             text_widget.markup =
                 '<span font="Odin Rounded 13">' .. month_string .. "</span>\n" ..
                 '<span font="Odin Rounded 18">' .. tostring(now.day) .. "</span>\n" ..
                 '<span font="Odin Rounded 13">' .. weekday_string .. "</span>\n\n" ..
-                '<span font="Odin Rounded 18">' .. tostring(now.hour) .. "\n" ..
+                '<span font="Odin Rounded 18">' .. tostring(hour_12_format) .. "\n" ..
                 tostring(now.min) .. "</span>\n" ..
-                '<span font="Odin Rounded 13">(</span><span font="Odin Rounded 7"> </span>' .. '<span font="Odin Rounded 13">' .. tostring(hour_12_format) .. "</span>" .. '<span font="Odin Rounded 7"> </span><span font="Odin Rounded 13">)</span>'
+                '<span font="Odin Rounded 13">(</span><span font="Odin Rounded 7"> </span>' .. '<span font="Odin Rounded 13">' .. tostring(now.hour) .. "</span>" .. '<span font="Odin Rounded 7"> </span><span font="Odin Rounded 13">)</span>'
         end
     end
 
