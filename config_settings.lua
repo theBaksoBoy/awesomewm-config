@@ -49,8 +49,6 @@ settings.run_on_startup = {
     settings.emacs_server, -- start the doom emacs server
     "sleep 3 ; " .. settings.emacs, -- Has delay to allow emacs daemon to start first
     config_dir .. "startup_reminders/handle_startup_reminders.sh", -- start thing that opens gedit of the reminder file if it is not empty, and then clears it
-    "cd /home/bakso/programming && cargo clean-all --keep-days 3 -y", -- run thing that runs cargo clean on rust projects that haven't been worked on for a while, since rust projects take up so much fucking storage space holy shit
-    --"cd " .. config_dir .. "python_background_macro_practice_tool/ ; source venv/bin/activate ; python3 main.py", -- start python script that notifies you if you typed a macro without using the dedicated macro button
 }
 
 
