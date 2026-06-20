@@ -31,9 +31,9 @@ local settings = {}
 
 settings.terminal = "kitty"
 settings.browser = "firefox"
-settings.file_browser = "nautilus"
+settings.file_browser = "thunar"
 -- note that Emacs stuff is based specifically on Doom Emacs. I'm not sure if vanilla Emacs's commands look any different
-settings.emacs =  "/usr/bin/emacsclient -c -a 'emacs'" -- if you don't want to use emacs then you can ignore this. All it will do is make the hotkey for launching it not work
+settings.emacs = "/usr/bin/emacsclient -c -a 'emacs'" -- if you don't want to use emacs then you can ignore this. All it will do is make the hotkey for launching it not work
 settings.emacs_server = "/usr/bin/emacs --daemon" -- if you don't want to use emacs then you can ignore this. All it will do is make a command ran at startup related to emacs fail
 
 settings.use_battery_indicators = false -- for if the wibar should have a battery widget, and if the battery status should periodically be updated
