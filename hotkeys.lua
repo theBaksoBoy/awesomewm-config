@@ -260,7 +260,7 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({ modkey }, "space",
         function ()
-            awful.util.spawn("rofi -show drun")
+            awful.util.spawn("rofi -show drun -show-icons")
         end,
         {description = "launch application with Rofi", group = "launcher"}),
 
