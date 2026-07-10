@@ -561,6 +561,9 @@ awful.rules.rules = {
 
     { rule = { class = "discord" },
         properties = { tag = tags[5] } },
+
+    { rule = { class = "app.fluxer.Fluxer" },
+        properties = { tag = tags[5] } },
     
     { rule = { class = "Emacs" },
         properties = { tag = tags[7] } },
