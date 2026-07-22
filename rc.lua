@@ -604,7 +604,7 @@ client.connect_signal("manage", function (c)
     end
 
     -- play TUNIC sound effect
-    if allowed_to_play_client_opening_sound then
+    if allowed_to_play_client_opening_sound and ShouldClientMakeOpenAndCloseSound(c) then
         awful.spawn.with_shell("paplay " .. config_dir .. "sounds/TUNIC_UI_select.wav &")
     end
 
@@ -614,10 +614,22 @@ end)
 -- signal function to execute when a client is closed
 client.connect_signal("unmanage", function(c)
     -- play TUNIC sound effect
-    awful.spawn.with_shell("paplay " .. config_dir .. "sounds/TUNIC_UI_cancel.wav &")
+    if ShouldClientMakeOpenAndCloseSound(c) then
+        awful.spawn.with_shell("paplay " .. config_dir .. "sounds/TUNIC_UI_cancel.wav &")
+    end
 
     UpdateCompositorAutoModeState()
 end)
+
+function ShouldClientMakeOpenAndCloseSound(c)
+
+    -- make it so that the seek bar thing in VLC doesn't make sounds
+    if c.name == "vlc" and c.type == "utility" then
+        return false
+    end
+    
+    return true
+end
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
