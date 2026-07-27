@@ -42,7 +42,7 @@ settings.darken_screens_with_DDC_CI = true -- if the redshift button should be u
 -- commands that will be run when AwesomeWM starts up
 settings.run_on_startup = {
     "discord",
-    "flatpak run app.fluxer.Fluxer",
+    --"sleep 5 ; flatpak run app.fluxer.Fluxer",
     settings.browser,
     --"steam -silent", -- start steam in the background
     "kdeconnect-cli", -- start KDE-connect so that stuff can be recieved from the app
