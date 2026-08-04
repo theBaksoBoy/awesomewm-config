@@ -248,7 +248,7 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({ modkey, "Shift" }, "s",
         function ()
-            awful.spawn.easy_async_with_shell('maim -o -s | tee ~/Pictures/Screenshots/"Screenshot_$(date +"%Y-%m-%d_%H-%M-%S")".png | xclip -selection clipboard -t image/png')
+            awful.spawn.easy_async_with_shell('mkdir -p ~/Pictures/screenshots | maim -o -s | tee ~/Pictures/screenshots/"Screenshot_$(date +"%Y-%m-%d_%H-%M-%S")".png | xclip -selection clipboard -t image/png')
         end,
         {description = "take screenshot of region", group = "launcher"}),
 
