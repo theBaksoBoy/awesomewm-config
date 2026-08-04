@@ -10,6 +10,7 @@
 -- paplay
 -- redshift
 -- maim
+-- xclip
 -- picom fork with animations (https://github.com/r0-zero/picom) (in AUR the package is called  picom-ftlabs-git)
 -- rofi
 -- rofi-calc (https://github.com/svenstaro/rofi-calc)
