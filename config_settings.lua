@@ -22,6 +22,8 @@
 -- xset    (in pacman the package is called xorg-xset)
 -- udisks2
 -- udiskie
+-- polkit
+-- polkit-gnome
 -- The applications listed below by the variables are also dependencies, however note that these are changeable if you want to use other applications
 
 -- hotkeys.lua is for all the different hotkeys in the config
@@ -55,6 +57,7 @@ settings.run_on_startup = {
     "sleep 3 ; " .. settings.emacs, -- Has delay to allow emacs daemon to start first
     config_dir .. "startup_reminders/handle_startup_reminders.sh", -- start thing that opens gedit of the reminder file if it is not empty, and then clears it
     "udiskie",
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
 }
 
 
