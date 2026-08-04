@@ -5,21 +5,22 @@
 
 -- dependencies for config to work
 -------------------------------------
--- sharedtags (might be included in config already in same dir as rc.lua) (https://github.com/Drauthius/awesome-sharedtags)
--- all the programs listed further down in the changeable setting (most can be changed though!)
+-- sharedtags    (already included in repo) (https://github.com/Drauthius/awesome-sharedtags)
 -- paplay
 -- redshift
 -- maim
 -- xclip
--- picom fork with animations (https://github.com/r0-zero/picom) (in AUR the package is called  picom-ftlabs-git)
+-- picom fork with animations    (https://github.com/r0-zero/picom) (in AUR the package is called  picom-ftlabs-git)
 -- rofi
--- rofi-calc (https://github.com/svenstaro/rofi-calc)
--- greenclip (https://github.com/erebe/greenclip)
+-- rofi-calc    (https://github.com/svenstaro/rofi-calc)
+-- greenclip    (https://github.com/erebe/greenclip)
 -- the font "Odin Rounded"
--- acpi
--- wpctl (should already be included if you use pipewire)
--- brightnessctl
--- xset (in pacman the package is called xorg-xset)
+-- acpi    (if using battery indicator)
+-- wpctl    (included with PipeWire)
+-- ddcutil    (if using config to darken screens with DDC CI)
+-- brightnessctl    (if on laptop)
+-- xset    (in pacman the package is called xorg-xset)
+-- The applications listed below by the variables are also dependencies, however note that these are changeable if you want to use other applications
 
 -- hotkeys.lua is for all the different hotkeys in the config
 
