@@ -56,14 +56,14 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({}, "XF86AudioRaiseVolume",
         function ()
-            awful.spawn.with_shell("wpctl set-volume @DEFAULT_SINK@ 10%+")
-            naughty.notify({text="volume +10%"})
+            awful.spawn.with_shell("wpctl set-volume @DEFAULT_SINK@ 5%+")
+            naughty.notify({text="volume +5%"})
         end),
 
     awful.key({}, "XF86AudioLowerVolume",
         function ()
-            awful.spawn.with_shell("wpctl set-volume @DEFAULT_SINK@ 10%-")
-            naughty.notify({text="volume -10%"})
+            awful.spawn.with_shell("wpctl set-volume @DEFAULT_SINK@ 5%-")
+            naughty.notify({text="volume -5%"})
         end),
 
     awful.key({}, "XF86AudioMute",
@@ -74,8 +74,8 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({}, "XF86MonBrightnessDown",
         function ()
-            awful.spawn.with_shell("brightnessctl set 10%-")
-            naughty.notify({text="brightness -10%"})
+            awful.spawn.with_shell("brightnessctl set 5%-")
+            naughty.notify({text="brightness -5%"})
             -- make sure that brightness doesn't go to 0% because at least on my laptop, the screen goes pitch fucking black
             awful.spawn.easy_async_with_shell("brightnessctl i | awk -F'[()%]' '/Current brightness/ {print $2}'", function(stdout)
                 if tonumber(stdout) < 1 then
@@ -87,8 +87,8 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({}, "XF86MonBrightnessUp",
         function ()
-            awful.spawn.with_shell("brightnessctl set +10%")
-            naughty.notify({text="brightness +10%"})
+            awful.spawn.with_shell("brightnessctl set +5%")
+            naughty.notify({text="brightness +5%"})
         end),
 
     awful.key({ "Mod1" }, "Tab",
