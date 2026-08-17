@@ -1,7 +1,7 @@
 
 local battery_information = {
     is_charging = false,
-    percentage = 100,
+    percentage = "∙∙∙",
     time_remaining_hours = 0,
     time_remaining_minutes = 0,
     is_low = false,
