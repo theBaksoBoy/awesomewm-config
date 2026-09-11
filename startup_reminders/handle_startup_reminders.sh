@@ -7,7 +7,7 @@ if [ -f "$FILE" ] && [ -s "$FILE" ]; then
     # prints out the file in a kitty terminal
     kitty --hold cat "$FILE" &
 
-    sleep 1
+    sleep 10
 
     # clear the file
     > "$FILE"
