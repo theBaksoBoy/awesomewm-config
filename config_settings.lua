@@ -12,8 +12,8 @@
 -- xclip
 -- picom fork with animations    (https://github.com/r0-zero/picom) (in AUR the package is called  picom-ftlabs-git)
 -- rofi
--- rofi-calc    (https://github.com/svenstaro/rofi-calc)
--- greenclip    (https://github.com/erebe/greenclip)
+-- rofi-calc
+-- greenclip    (https://github.com/erebe/greenclip) (in AUR the package is called rofi-greenclip)
 -- the font "Odin Rounded"
 -- acpi    (if using battery indicator)
 -- wpctl    (included with PipeWire)
