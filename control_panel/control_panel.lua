@@ -448,9 +448,9 @@ end
 
 -- what bar should be updated in the current loop
 local bar_updating_index = 1
-local bar_updating_functions = { UpdateCPUBar, UpdateGPUBar, UpdateRAMBar, UpdateBatteryBar }
+local bar_updating_functions = { UpdateCPUBar, UpdateRAMBar, UpdateGPUBar, UpdateBatteryBar }
 bar_updating_loop_timer = gears.timer({
-        timeout = 0.25,
+        timeout = 0.5,
         autostart = false,
         callback = function ()
 
