@@ -242,9 +242,15 @@ globalkeys = gears.table.join(globalkeys,
 
     awful.key({ modkey }, "e",
         function ()
-            awful.spawn(settings.file_browser)
+            awful.spawn(settings.file_browser_primary)
         end,
-        {description = "open file browser", group = "launcher"}),
+        {description = "open primary file browser", group = "launcher"}),
+
+    awful.key({ modkey, "Control" }, "e",
+        function ()
+            awful.spawn(settings.file_browser_secondary)
+        end,
+        {description = "open secondary file browser", group = "launcher"}),
 
     awful.key({ modkey, "Shift" }, "s",
         function ()

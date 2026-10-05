@@ -37,7 +37,8 @@ local settings = {}
 
 settings.terminal = "kitty"
 settings.browser = "firefox"
-settings.file_browser = "kitty -- spf" -- spf = superfile. Note that bat, a nerd icon font, and thunar are also used with your spf config
+settings.file_browser_primary = "kitty -- spf" -- spf = superfile. Note that bat, a nerd icon font, and thunar are also used with your spf config
+settings.file_browser_secondary = "thunar"
 -- note that Emacs stuff is based specifically on Doom Emacs. I'm not sure if vanilla Emacs's commands look any different
 settings.emacs = "/usr/bin/emacsclient -c -a 'emacs'" -- if you don't want to use emacs then you can ignore this. All it will do is make the hotkey for launching it not work
 settings.emacs_server = "/usr/bin/emacs --daemon" -- if you don't want to use emacs then you can ignore this. All it will do is make a command ran at startup related to emacs fail
