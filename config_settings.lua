@@ -15,6 +15,7 @@
 -- rofi-calc
 -- greenclip    (https://github.com/erebe/greenclip) (in AUR the package is called rofi-greenclip)
 -- the font "Odin Rounded"
+-- this trunic font (note that this is only necessary when modifying the .kra assets of the config) (https://www.reddit.com/r/TunicGame/comments/12nr1m1/tunic_font_fullversion/)
 -- acpi    (if using battery indicator)
 -- wpctl    (included with PipeWire)
 -- ddcutil    (if using config to darken screens with DDC CI)
