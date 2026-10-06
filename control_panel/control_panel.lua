@@ -100,7 +100,7 @@ end
 -- make compositor button widget
 local button_compositor = wibox.widget {
     ButtonCreator({config_dir .. "control_panel/buttons/compositor_auto.png", config_dir .. "control_panel/buttons/compositor_off.png", config_dir .. "control_panel/buttons/compositor_on.png"}, SetCompositorMode),
-    left = (680 - 88) / 2 - 200, -- x position
+    left = (680 - 88) / 2 - 240, -- x position
     top = 405, -- y position
     widget = wibox.container.margin
 }
@@ -113,14 +113,14 @@ local button_redshift = nil
 if settings.darken_screens_with_DDC_CI then
     button_redshift = wibox.widget {
         ButtonCreator({config_dir .. "control_panel/buttons/screen_redshift.png", config_dir .. "control_panel/buttons/screen_redshift_dark.png", config_dir .. "control_panel/buttons/screen_normal.png"}, SetRedshiftMode),
-        left = (680 - 88) / 2 + 0, -- x position
+        left = (680 - 88) / 2 - 80, -- x position
         top = 405, -- y position
         widget = wibox.container.margin
     }
 else
     button_redshift = wibox.widget {
         ButtonCreator({config_dir .. "control_panel/buttons/screen_redshift.png", config_dir .. "control_panel/buttons/screen_normal.png"}, SetRedshiftMode),
-        left = (680 - 88) / 2 + 0, -- x position
+        left = (680 - 88) / 2 + 80, -- x position
         top = 405, -- y position
         widget = wibox.container.margin
     }
@@ -132,7 +132,7 @@ button_redshift.bottom = 605 - button_redshift.top
 -- make keyboard layout button widget
 local button_keyboard_layout = wibox.widget {
     ButtonCreator({config_dir .. "control_panel/buttons/keyboard_layout_swedish.png", config_dir .. "control_panel/buttons/keyboard_layout_other.png"}, SetKeyboardLayoutMode),
-    left = (680 - 88) / 2 + 200, -- x position
+    left = (680 - 88) / 2 + 240, -- x position
     top = 405, -- y position
     widget = wibox.container.margin
 }
