@@ -1,37 +1,9 @@
--- here you will find both settings for general configurations for the AwesomeWM config,
--- but also info about dependencies and stuff
 
-
-
--- dependencies for config to work
--------------------------------------
--- sharedtags    (already included in repo) (https://github.com/Drauthius/awesome-sharedtags)
--- paplay
--- redshift
--- maim
--- xclip
--- picom fork with animations    (https://github.com/r0-zero/picom) (in AUR the package is called  picom-ftlabs-git)
--- rofi
--- rofi-calc
--- greenclip    (https://github.com/erebe/greenclip) (in AUR the package is called rofi-greenclip)
--- the font "Odin Rounded"
--- this trunic font (note that this is only necessary when modifying the .kra assets of the config) (https://www.reddit.com/r/TunicGame/comments/12nr1m1/tunic_font_fullversion/)
--- acpi    (if using battery indicator)
--- wpctl    (included with PipeWire)
--- ddcutil    (if using config to darken screens with DDC CI)
--- brightnessctl    (if on laptop)
--- xset    (in pacman the package is called xorg-xset)
--- udisks2
--- udiskie
--- polkit
--- polkit-gnome
--- The applications listed below by the variables are also dependencies, however note that these are changeable if you want to use other applications
-
--- hotkeys.lua is for all the different hotkeys in the config
+-- here you will find both settings for general configurations for the awesome config
 
 local settings = {}
 
--- if you want to add/remove/change the tag selection then good luck. There is no super easy way of doing it.
+-- If you want to add/remove/change the tag selection then good luck. There is no super easy way of doing it.
 -- If you want to add a tag, *unless I remember something wrong* you have to first go into rc.lua and change tag_count.
 -- Then change the tags variable to add another entry. Then finally(?) go into wibar/tag_button_widget and create a new
 -- file named tag_n.png (with n being the tag number) which is used as the image for the tag button.
@@ -47,7 +19,7 @@ settings.emacs_server = "/usr/bin/emacs --daemon" -- if you don't want to use em
 settings.use_battery_indicators = false -- for if the wibar should have a battery widget, and if the battery status should periodically be updated
 settings.darken_screens_with_redshift = true -- if redshift should also darken the screens or not
 
--- commands that will be run when AwesomeWM starts up
+-- commands that will be run when awesome starts up
 settings.run_on_startup = {
     "discord",
     --"sleep 5 ; flatpak run app.fluxer.Fluxer",
@@ -61,7 +33,5 @@ settings.run_on_startup = {
     "udiskie",
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
 }
-
-
 
 return settings
