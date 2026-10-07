@@ -105,16 +105,32 @@ end
 local function SetBrightnessMode(button_state)
     -- button state 1 = bright, 2 = dark
     if button_state == 1 then
+
         -- set brightness of screens
-        awful.spawn.with_shell("ddcutil --display 1 setvcp 10 100 && ddcutil --display 2 setvcp 10 100")
+        local command = "ddcutil --display 1 setvcp 10 100"
+        for i = 1, screen.count() do
+            if not (i == 1) then
+                command = command .. " && ddcutil --display " .. tostring(i) .. " setvcp 10 100"
+            end
+        end
+        awful.spawn.with_shell(command)
+
         -- save brightness state to file
         local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
         file:write("bright")
         file:close()
 
     elseif button_state == 2 then
+
         -- set brightness of screens
-        awful.spawn.with_shell("ddcutil --display 1 setvcp 10 0 && ddcutil --display 2 setvcp 10 0")
+        local command = "ddcutil --display 1 setvcp 10 0"
+        for i = 1, screen.count() do
+            if not (i == 1) then
+                command = command .. " && ddcutil --display " .. tostring(i) .. " setvcp 10 0"
+            end
+        end
+        awful.spawn.with_shell(command)
+
         -- save brightness state to file
         local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
         file:write("dark")
