@@ -1,5 +1,5 @@
 
--- to speify what commands should be run during startup, look in config_settings.lua and not here!
+-- to speify what commands should be run during startup, look in settings.lua and not here!
 
 -- do not remove these as they are a key part of the config!
 awful.spawn.with_shell("picom") -- compositor

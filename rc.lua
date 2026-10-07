@@ -44,13 +44,13 @@ require("beautiful_settings") -- load beautiful settings
 
 
 -- load variables for all the general settings for the config
-settings = require("config_settings")
+settings = require("settings")
 
 
 
 local wallpaper_to_use = require("get_wallpaper_to_use")
 
--- stores battery information. Requiring the script also makes the gears timer that updates the status start (if specified in config_settings.lua)
+-- stores battery information. Requiring the script also makes the gears timer that updates the status start (if specified in settings.lua)
 battery_information = require("battery")
 
 local BatteryWidgetCreator = require("wibar.battery_widget.battery_widget_creator")
