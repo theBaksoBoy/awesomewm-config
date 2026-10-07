@@ -512,7 +512,7 @@ bar_updating_loop_timer = gears.timer({
 
 -- start timer that updates the redshift state occationally
 gears.timer({
-    timeout = 30,
+    timeout = 60,
     autostart = true,
     single_shot = false,
     callback = function ()
