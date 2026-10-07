@@ -45,7 +45,7 @@ settings.emacs = "/usr/bin/emacsclient -c -a 'emacs'" -- if you don't want to us
 settings.emacs_server = "/usr/bin/emacs --daemon" -- if you don't want to use emacs then you can ignore this. All it will do is make a command ran at startup related to emacs fail
 
 settings.use_battery_indicators = false -- for if the wibar should have a battery widget, and if the battery status should periodically be updated
-settings.darken_screens_with_DDC_CI = true -- if the redshift button should be used to toggle between a bright and dark screen using DDC/CI. This is not very necessary on for instance laptops, as you can manually change their brightness way more efficiently
+settings.darken_screens_with_redshift = true -- if redshift should also darken the screens or not
 
 -- commands that will be run when AwesomeWM starts up
 settings.run_on_startup = {

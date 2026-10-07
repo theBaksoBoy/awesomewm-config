@@ -38,8 +38,46 @@ function UpdateCompositorAutoModeState()
 
     -- start or stop picom depending on if it should be on or off
     SetCompositorState(activate_compositor)
-
 end
+
+
+
+redshift_is_active = false
+redshift_on_command = "redshift -P -O 2000"
+redshift_off_command = "redshift -P -O 6500"
+if settings.darken_screens_with_redshift then
+    redshift_on_command = redshift_on_command .. " -b 0.5"
+end
+-- function used to apply the relevant redshift state. This function is run on a timer, and is also run when pressing the redshift button
+local function ApplyRelevantRedshiftState(ignore_current_state)
+
+    local hour = os.date("*t").hour
+
+    local hour_to_activate_redshift = nil
+    if redshift_state == 1 then
+        hour_to_activate_redshift = 20
+    elseif redshift_state == 2 then
+        hour_to_activate_redshift = 22
+    end
+
+    if redshift_state == 1 or redshift_state == 2 then -- early or late
+        if (hour >= hour_to_activate_redshift or hour <= 4) and (not redshift_is_active or ignore_current_state) then
+            awful.spawn.with_shell(redshift_on_command)
+            redshift_is_active = true
+        elseif not (hour >= hour_to_activate_redshift or hour <= 4) and (redshift_is_active or ignore_current_state) then
+            awful.spawn.with_shell(redshift_off_command)
+            redshift_is_active = false
+        end
+
+    elseif redshift_state == 3 then -- off
+        if redshift_is_active or ignore_current_state then
+            awful.spawn.with_shell(redshift_off_command)
+            redshift_is_active = false
+        end
+    end
+end
+
+
 
 -- used when pressing the compositor button
 local function SetCompositorMode(button_state)
@@ -57,31 +95,31 @@ local function SetCompositorMode(button_state)
     end
 end
 
+redshift_state = 1 -- 1 = early, 2 = late, 3 = off
 -- used when pressing the redshift button
 local function SetRedshiftMode(button_state)
-    -- button state (if settings.darken_screens_with_DDC_CI)     1 = redshift, 2 = redshift + dark, 3 = normal
-    -- button state (if not settings.darken_screens_with_DDC_CI) 1 = redshift, 2 = normal
+    redshift_state = button_state
+    ApplyRelevantRedshiftState(false)
+end
+
+local function SetBrightnessMode(button_state)
+    -- button state 1 = bright, 2 = dark
     if button_state == 1 then
-        awful.spawn.with_shell("redshift")
-    elseif button_state == 2 then
-        if settings.darken_screens_with_DDC_CI then
-            -- set brightness of screens
-            awful.spawn.with_shell("ddcutil --display 1 setvcp 10 0 && ddcutil --display 2 setvcp 10 0")
-            -- save brightness state to file
-            local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
-            file:write("dark")
-            file:close()
-        else
-            awful.spawn.with_shell("killall redshift")
-        end
-    elseif button_state == 3 then
-        awful.spawn.with_shell("killall redshift")
         -- set brightness of screens
         awful.spawn.with_shell("ddcutil --display 1 setvcp 10 100 && ddcutil --display 2 setvcp 10 100")
-            -- save brightness state to file
-            local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
-            file:write("bright")
-            file:close()
+        -- save brightness state to file
+        local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
+        file:write("bright")
+        file:close()
+
+    elseif button_state == 2 then
+        -- set brightness of screens
+        awful.spawn.with_shell("ddcutil --display 1 setvcp 10 0 && ddcutil --display 2 setvcp 10 0")
+        -- save brightness state to file
+        local file = io.open(config_dir .. "last_screen_brightness_state.txt", "w")
+        file:write("dark")
+        file:close()
+
     end
 end
 
@@ -110,24 +148,27 @@ button_compositor.bottom = 605 - button_compositor.top
 
 -- make redshift button widget
 local button_redshift = nil
-if settings.darken_screens_with_DDC_CI then
-    button_redshift = wibox.widget {
-        ButtonCreator({config_dir .. "control_panel/buttons/screen_redshift.png", config_dir .. "control_panel/buttons/screen_redshift_dark.png", config_dir .. "control_panel/buttons/screen_normal.png"}, SetRedshiftMode),
-        left = (680 - 88) / 2 - 80, -- x position
-        top = 405, -- y position
-        widget = wibox.container.margin
-    }
-else
-    button_redshift = wibox.widget {
-        ButtonCreator({config_dir .. "control_panel/buttons/screen_redshift.png", config_dir .. "control_panel/buttons/screen_normal.png"}, SetRedshiftMode),
-        left = (680 - 88) / 2 + 80, -- x position
-        top = 405, -- y position
-        widget = wibox.container.margin
-    }
-end
+button_redshift = wibox.widget {
+    ButtonCreator({config_dir .. "control_panel/buttons/redshift_early.png", config_dir .. "control_panel/buttons/redshift_late.png", config_dir .. "control_panel/buttons/redshift_off.png"}, SetRedshiftMode),
+    left = (680 - 88) / 2 - 80, -- x position
+    top = 405, -- y position
+    widget = wibox.container.margin
+}
 -- jank shit to make button not pressable when pressing underneath or to the right of it
 button_redshift.right = 592 - button_redshift.left
 button_redshift.bottom = 605 - button_redshift.top
+
+-- make brightness button widget
+local button_brightness = nil
+button_brightness = wibox.widget {
+    ButtonCreator({config_dir .. "control_panel/buttons/brightness_bright.png", config_dir .. "control_panel/buttons/brightness_dark.png"}, SetBrightnessMode),
+    left = (680 - 88) / 2 + 80, -- x position
+    top = 405, -- y position
+    widget = wibox.container.margin
+}
+-- jank shit to make button not pressable when pressing underneath or to the right of it
+button_brightness.right = 592 - button_brightness.left
+button_brightness.bottom = 605 - button_brightness.top
 
 -- make keyboard layout button widget
 local button_keyboard_layout = wibox.widget {
@@ -236,6 +277,7 @@ control_panel_main:setup {
     },
     button_compositor,
     button_redshift,
+    button_brightness,
     button_keyboard_layout,
     bar_CPU_margin,
     bar_GPU_margin,
@@ -466,7 +508,27 @@ bar_updating_loop_timer = gears.timer({
         end
 })
 
--- I'm pretty sure this line isn't nessecary. If you have had it commented for a while without issue you can probably remove it
---PositionControlPanelOnScreen(screen.primary)
+
+
+-- start timer that updates the redshift state occationally
+gears.timer({
+    timeout = 30,
+    autostart = true,
+    single_shot = false,
+    callback = function ()
+        ApplyRelevantRedshiftState(false)
+    end
+})
+-- after a very short bit after boot, make sure that the redshift state is correct
+gears.timer({
+    timeout = 0.5,
+    autostart = true,
+    single_shot = true,
+    callback = function ()
+        ApplyRelevantRedshiftState(true)
+    end
+})
+
+
 
 SetControlPanelVisibility(false)
