@@ -22,6 +22,7 @@ settings.darken_screens_with_redshift = true -- if redshift should also darken t
 -- commands that will be run when awesome starts up
 settings.run_on_startup = {
     "discord",
+    "sleep 2 ; ~/programs/osmium/Osmium*.AppImage",
     --"sleep 5 ; flatpak run app.fluxer.Fluxer",
     settings.browser,
     --"steam -silent", -- start steam in the background

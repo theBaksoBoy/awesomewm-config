@@ -92,7 +92,7 @@ tags = sharedtags({
     {name = "2", layout = awful.layout.layouts[1] }, -- browser
     {name = "3", layout = awful.layout.layouts[1] }, -- secondary
     {name = "4", layout = awful.layout.layouts[1] }, -- files
-    {name = "5", layout = awful.layout.layouts[1] }, -- background tasks
+    {name = "5", layout = awful.layout.layouts[3] }, -- background tasks
     {name = "6", layout = awful.layout.layouts[1] }, -- tetriary
     {name = "7", layout = awful.layout.layouts[1] }, -- emacs
 })
@@ -565,6 +565,9 @@ awful.rules.rules = {
     { rule = { class = "app.fluxer.Fluxer" },
         properties = { tag = tags[5] } },
     
+    { rule = { class = "Osmium" },
+        properties = { tag = tags[5] } },
+
     { rule = { class = "Emacs" },
         properties = { tag = tags[7] } },
     
