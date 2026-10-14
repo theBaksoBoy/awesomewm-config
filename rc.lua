@@ -52,6 +52,7 @@ local wallpaper_to_use = require("get_wallpaper_to_use")
 
 -- stores battery information. Requiring the script also makes the gears timer that updates the status start (if specified in settings.lua)
 battery_information = require("battery")
+
 local BatteryWidgetCreator = require("wibar.battery_widget.battery_widget_creator")
 
 -- if made to do so in settings.lua, start the script that updates your glucose values every minute
