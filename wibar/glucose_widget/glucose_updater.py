@@ -5,7 +5,7 @@ import os
 import time
 import subprocess
 
-DIR = f"{os.path.expanduser('~')}/.config/awesome/glucose"
+DIR = f"{os.path.expanduser('~')}/.config/awesome/wibar/glucose_widget"
 username = ""
 password = ""
 

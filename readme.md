@@ -28,7 +28,7 @@ To change settings in this config such as what file browser you are using, or if
 - **you also need to look in settings.lua and hotkeys.lua for applications that are specified there.**
 
 If you are going to use the glucose widget that gets values from LibreLinkUp then you need to do the following
-- Run the commands `cd ~/.config/awesome/glucose && python3 -m venv venv` and `source venv/bin/activate && pip install libre-linkup-py && pip install pydantic`.
-- Note that the url string in `glucose/glucose_updater.py` may be dependant on your region (read more here: https://github.com/smpurkis/libre-linkup-py). The url used in this config is what works for me in Sweden.
+- Run the commands `cd ~/.config/awesome/wibar/glucose_widget && python3 -m venv venv` and `source venv/bin/activate && pip install libre-linkup-py && pip install pydantic`.
+- Note that the url string in `wibar/glucose_widget/glucose_updater.py` may be dependant on your region (read more here: https://github.com/smpurkis/libre-linkup-py). The url used in this config is what works for me in Sweden.
 - As of writing this the last commit for libre-linkup-py was commit `d67fc28`. It has an error related to timezones. Fix this by going into `glucose/venv/lib/python3.14/site-packages/libre-link-up/client.py` and change `tz = timezone(country)` to `tz = timezone("Europe/Stockholm" if country == "SE" else country)` (this fix is only relevant for Swedish users).
 - To make the widget work you need to provide login details for your LibreLinkUp account. create the file login_credentials.txt under glucose/ where line 1 is the account's email, and line 2 is the account's password.
