@@ -52,8 +52,12 @@ local wallpaper_to_use = require("get_wallpaper_to_use")
 
 -- stores battery information. Requiring the script also makes the gears timer that updates the status start (if specified in settings.lua)
 battery_information = require("battery")
-
 local BatteryWidgetCreator = require("wibar.battery_widget.battery_widget_creator")
+
+-- if made to do so in settings.lua, start the script that updates your glucose values every minute
+if settings.use_librelinkup_glucose_widget then
+    awful.spawn.with_shell("cd " .. config_dir .. "glucose && source venv/bin/activate && python3 glucose_updater.py")
+end
 
 -- create the clock widget
 local TextClockCreator = require("wibar.clock_widget.clock_widget_creator")
