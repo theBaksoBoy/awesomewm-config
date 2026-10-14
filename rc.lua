@@ -60,6 +60,8 @@ if settings.use_librelinkup_glucose_widget then
     awful.spawn.with_shell("cd " .. config_dir .. "wibar/glucose_widget && source venv/bin/activate && python3 glucose_updater.py")
 end
 
+local GlucoseWidgetCreator = require("wibar.glucose_widget.glucose_widget_creator")
+
 -- create the clock widget
 local TextClockCreator = require("wibar.clock_widget.clock_widget_creator")
 
@@ -428,6 +430,11 @@ awful.screen.connect_for_each_screen(function(s)
         s.battery_widget = BatteryWidgetCreator(s.wibar_side_of_screen == "right")
     end
 
+    -- only create the glucose widget if it should be shown. Otherwise it is nil
+    if settings.use_librelinkup_glucose_widget then
+        s.glucose_widget = GlucoseWidgetCreator(s.wibar_side_of_screen == "right")
+    end
+
     -- creating the actual wibar
     s.wibar = awful.wibar({
             position = "left", -- this value is kind of temporary. The parameter needs to be initialized here as it otherwise shits itself, but the value is changed to "rght" if it is on the right monitor
@@ -446,6 +453,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.vertical,
             s.control_panel_button_with_margin,
             s.battery_widget,
+            s.glucose_widget,
             s.systray_with_margin,
             s.wrapped_tasklist,
         },

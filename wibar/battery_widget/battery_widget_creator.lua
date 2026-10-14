@@ -13,7 +13,7 @@ local function CreateBatteryWidget(widget_on_right_screen)
     local body_charge_widget = CreateImageWidget(config_dir .. "wibar/battery_widget/battery_body_charging.png")
 
     local text_widget = wibox.widget {
-        text = "...", -- initial value
+        text = "∙∙∙", -- initial value
         font = "Odin Rounded 16",
         align = "center",
         halign = "center",
@@ -90,18 +90,6 @@ local function CreateBatteryWidget(widget_on_right_screen)
         battery_widget.left = 10
         battery_widget.right = 0
     end
-
-
-    battery_widget:buttons(gears.table.join(
-        awful.button({}, 1, function()
-            text_widget.show_in_ISO_format = not text_widget.show_in_ISO_format
-            text_widget.Refresh()
-        end),
-        awful.button({}, 3, function()
-            text_widget.show_in_ISO_format = not text_widget.show_in_ISO_format
-            text_widget.Refresh()
-        end)
-    ))
 
     return battery_widget
 
