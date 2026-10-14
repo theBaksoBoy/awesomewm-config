@@ -95,10 +95,7 @@ local function CreateGlucoseWidget(widget_on_right_screen)
         glucose_text_widget.text = tostring(glucose_value)
         timedelta_text_widget.text = tostring(minutes_since_glucose_reading) .. "m"
 
-        
-        -- red: #F44
-        -- orange: #FB2
-        -- white: #FFF
+        -- update the color of the glucose text according to the value
         if glucose_value > 10 then
             glucose_text_widget_colorable.fg = "#FB2"
         elseif glucose_value < 4 then
