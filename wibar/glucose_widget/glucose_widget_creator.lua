@@ -108,21 +108,12 @@ local function CreateGlucoseWidget(widget_on_right_screen)
 
 
 
-    -- refresh the widget each minute. The one minute timer starts after 7 seconds to give glucose_updater.py time to log in and stuff
+    -- refresh the widget each minute
     gears.timer {
-        timeout = 7,
+        timeout = 60,
         autostart = true,
-        single_shot = true,
-        callback = function()
-            
-            gears.timer {
-                timeout = 60,
-                autostart = true,
-                call_now = true,
-                callback = glucose_widget.Refresh
-            }
-
-        end
+        call_now = true,
+        callback = glucose_widget.Refresh
     }
 
 

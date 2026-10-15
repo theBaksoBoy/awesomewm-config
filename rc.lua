@@ -57,7 +57,7 @@ local BatteryWidgetCreator = require("wibar.battery_widget.battery_widget_creato
 
 -- if made to do so in settings.lua, start the script that updates your glucose values every minute
 if settings.use_librelinkup_glucose_widget then
-    awful.spawn.with_shell("cd " .. config_dir .. "wibar/glucose_widget && source venv/bin/activate && python3 glucose_updater.py")
+    awful.spawn.with_shell("sleep 5 && cd " .. config_dir .. "wibar/glucose_widget && source venv/bin/activate && python3 glucose_updater.py")
 end
 
 local GlucoseWidgetCreator = require("wibar.glucose_widget.glucose_widget_creator")
